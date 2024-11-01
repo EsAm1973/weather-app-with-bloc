@@ -12,10 +12,7 @@ class CurrentWeatherLoaded extends WeatherState {
   CurrentWeatherLoaded({required this.currentWeather});
 }
 
-class ForecastWeatherLoaded extends WeatherState {
-  final List<ForecastWeather> forecastWeather;
-  ForecastWeatherLoaded({required this.forecastWeather});
-}
+
 
 final class WeatherError extends WeatherState {
   final String message;
