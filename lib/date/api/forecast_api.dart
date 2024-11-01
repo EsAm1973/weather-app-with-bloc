@@ -9,7 +9,6 @@ class ForecastApi {
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = json.decode(response.body)['list'];
-      print(response.body);
       return jsonData.map((data) => ForecastWeather.fromJson(data)).toList();
     } else {
       throw Exception('Failed to load weather data');

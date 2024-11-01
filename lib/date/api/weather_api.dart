@@ -9,7 +9,6 @@ class WeatherApi {
     final response = await http.get(Uri.parse(finalUrl));
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);
-      print(response.body);
       return CurrentWeather.fromJson(jsonData);
     } else {
       throw Exception('Can not load weather data');

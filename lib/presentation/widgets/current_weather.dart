@@ -4,20 +4,20 @@ import 'package:weather_app_with_bloc/date/model/current_weather.dart';
 
 class BuildCurrentWeatherWidget extends StatelessWidget {
   const BuildCurrentWeatherWidget({super.key, required this.currentWeather});
-  final CurrentWeather currentWeather;
+  final CurrentWeather? currentWeather;
   @override
   Widget build(BuildContext context) {
-    final temperature = currentWeather.main.temp;
-    final minTempreture = currentWeather.main.tempMin;
-    final maxTempreture = currentWeather.main.tempMax;
+    final temperature = currentWeather!.main.temp;
+    final minTempreture = currentWeather!.main.tempMin;
+    final maxTempreture = currentWeather!.main.tempMax;
     final formattedTemperature =
         temperature != null ? (temperature - 273.15).toInt() : 'N/A';
     final formattedMinTemperature =
         minTempreture != null ? (minTempreture - 273.15).toInt() : 'N/A';
     final formattedMaxTemperature =
         maxTempreture != null ? (maxTempreture - 273.15).toInt() : 'N/A';
-    final description = currentWeather.weather.isNotEmpty
-        ? currentWeather.weather[0].description
+    final description = currentWeather!.weather.isNotEmpty
+        ? currentWeather!.weather[0].description
         : 'No description available';
     String imagePath = '';
     if (description == 'clear sky') {
@@ -44,7 +44,7 @@ class BuildCurrentWeatherWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          currentWeather.name,
+          currentWeather!.name,
           style: const TextStyle(
               color: MyColor.MyWhite,
               fontSize: 40,
