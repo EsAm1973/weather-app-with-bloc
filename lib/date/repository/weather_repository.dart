@@ -7,7 +7,7 @@ class WeatherRepository {
   WeatherRepository(this.apiService);
 
   Future<CurrentWeather> getCurrentWeather(String city) async {
-    final jsonData = await apiService.getWeatherData(city, 'weather');
+    final jsonData = await apiService.get(city, 'weather');
     return CurrentWeather.fromJson(jsonData);
   }
 }

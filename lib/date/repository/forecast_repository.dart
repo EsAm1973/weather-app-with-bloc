@@ -7,7 +7,7 @@ class ForecastRepository {
   ForecastRepository(this.apiService);
 
   Future<List<ForecastWeather>> getWeatherForecast(String city) async {
-    final jsonData = await apiService.getWeatherData(city, 'forecast');
+    final jsonData = await apiService.get(city, 'forecast');
     return (jsonData['list'] as List)
         .map((data) => ForecastWeather.fromJson(data))
         .toList();

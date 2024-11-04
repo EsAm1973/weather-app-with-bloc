@@ -7,7 +7,7 @@ class ApiService {
 
   ApiService(this.baseUrl, this.apiKey);
 
-  Future<dynamic> getWeatherData(String city, String endpoint) async {
+  Future<dynamic> get(String city, String endpoint) async {
     final finalUrl = '$baseUrl/$endpoint?q=$city&appid=$apiKey';
     final response = await http.get(Uri.parse(finalUrl));
     if (response.statusCode == 200) {
