@@ -1,13 +1,15 @@
-import 'package:weather_app_with_bloc/date/api/forecast_api.dart';
+import 'package:weather_app_with_bloc/date/api/weather_api.dart';
 import 'package:weather_app_with_bloc/date/model/forecast_weather.dart';
 
 class ForecastRepository {
-  final ForecastApi forecastApi;
+  final ApiService apiService;
 
-  ForecastRepository(this.forecastApi);
+  ForecastRepository(this.apiService);
 
-  Future<List<ForecastWeather>> getWeatherForecast(String cityName) async {
-    final forecastWeather = await forecastApi.getWeatherForecast(cityName);
-    return forecastWeather;
+  Future<List<ForecastWeather>> getWeatherForecast(String city) async {
+    final jsonData = await apiService.getWeatherData(city, 'forecast');
+    return (jsonData['list'] as List)
+        .map((data) => ForecastWeather.fromJson(data))
+        .toList();
   }
 }

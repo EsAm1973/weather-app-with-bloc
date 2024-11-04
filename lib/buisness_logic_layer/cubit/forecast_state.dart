@@ -1,18 +1,20 @@
 part of 'forecast_cubit.dart';
 
 @immutable
-sealed class ForecastState {}
+abstract class ForecastState {}
 
-final class ForecastInitial extends ForecastState {}
+class ForecastInitial extends ForecastState {}
 
-final class ForecastLoading extends ForecastState {}
+class ForecastLoading extends ForecastState {}
 
 class ForecastWeatherLoaded extends ForecastState {
   final List<ForecastWeather> forecastWeather;
+
   ForecastWeatherLoaded({required this.forecastWeather});
 }
 
-final class WeatherError extends ForecastState {
+class ForecastError extends ForecastState {
   final String message;
-  WeatherError(this.message);
+
+  ForecastError(this.message);
 }

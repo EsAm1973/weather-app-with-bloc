@@ -1,17 +1,19 @@
 import 'dart:convert';
-import 'package:weather_app_with_bloc/constants/string.dart';
-import 'package:weather_app_with_bloc/date/model/current_weather.dart';
 import 'package:http/http.dart' as http;
 
-class WeatherApi {
-  Future<CurrentWeather> getWeatherData(String city) async {
-    final finalUrl = '$baseUrl/weather?q=$city&appid=$apiKey';
+class ApiService {
+  final String baseUrl;
+  final String apiKey;
+
+  ApiService(this.baseUrl, this.apiKey);
+
+  Future<dynamic> getWeatherData(String city, String endpoint) async {
+    final finalUrl = '$baseUrl/$endpoint?q=$city&appid=$apiKey';
     final response = await http.get(Uri.parse(finalUrl));
     if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      return CurrentWeather.fromJson(jsonData);
+      return jsonDecode(response.body);
     } else {
-      throw Exception('Can not load weather data');
+      throw Exception('Failed to load weather data');
     }
   }
 }
